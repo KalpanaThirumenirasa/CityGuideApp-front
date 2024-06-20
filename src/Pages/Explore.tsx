@@ -1,6 +1,7 @@
 import React from "react";
 import CustomCard from "../Components/CustomCard"; // Adjust path based on your project structure
 import { Container, Row, Col } from "react-bootstrap";
+import { useTranslation } from 'react-i18next';
 
 const Explore: React.FC = () => {
   return (
