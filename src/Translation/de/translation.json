@@ -1,4 +1,22 @@
 {
-  "logo": "hello german",
-  "Welcome to City Guide App": "Willkommen bei der City Guide App"
+  "Welcome to City Guide App": "Welkom bij de City Guide-app",
+  "Guide To New Customer": "Gids voor nieuwe klant",
+  "This is an application for you to understand Germany Better!": "Dit is een applicatie waarmee u Duitsland beter kunt begrijpen!",
+  "Register": "Register",
+  "Explore": "Ontdekken",
+  "City Guide App - 2024": "Stadsgids-app - 2024",
+  "Login": "Login",
+  "Email": "E-mail",
+  "Enter email": "Voer email in",
+  "Password": "Wachtwoord",
+  "Enter password": "Voer wachtwoord in",
+  "First Name": "Voornaam",
+  "Enter First Name": "Vul voornaam in",
+  "Hotels": "Hotels",
+  "Restaurant": "Restaurant",
+  "Popular Places": "Populaire plaatsen",
+  "Events": "Evenementen",
+  "Student Friendly Places": "Studentvriendelijke plaatsen",
+  "Houses": "Huizen",
+  "View": "Weergave"
 }

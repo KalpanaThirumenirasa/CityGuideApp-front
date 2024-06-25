@@ -1,4 +1,22 @@
 {
-  "logo": "hello english",
-  "Welcome to City Guide App": "Welcome to City Guide App"
+  "Welcome to City Guide App": "Welcome to City Guide App",
+  "Guide To New Customer": "Guide To New Customer",
+  "This is an application for you to understand Germany Better!": "This is an application for you to understand Germany Better!",
+  "Register": "Register",
+  "Explore": "Explore",
+  "City Guide App - 2024": "City Guide App - 2024",
+  "Login": "Login",
+  "Email": "Email",
+  "Enter email": "Enter email",
+  "Password": "Password",
+  "Enter password": "Enter password",
+  "First Name":"First Name",
+  "Enter First Name":"Enter First Name",
+  "Hotels":"Hotels",
+  "Restaurant":"Restaurant",
+  "Popular Places":"Popular Places",
+  "Events":"Events",
+  "Student Friendly Places":"Student Friendly Places",
+  "Houses":"Houses",
+  "View":"View"
 }

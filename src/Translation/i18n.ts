@@ -4,9 +4,9 @@ import { initReactI18next } from "react-i18next";
 
 import translationEN from "./en/translation.json";
 import translationDE from "./de/translation.json";
+import translationTA from "./ta/translation.json";
 import LanguageDetector from "i18next-browser-languagedetector";
-import { debug } from "console";
-// Import other translations as needed
+
 
 const resources = {
   en: {
@@ -15,19 +15,22 @@ const resources = {
   de: {
     translation: translationDE,
   },
-  // Add other languages here
+  ta: {
+    translation: translationTA,
+  },
+  
 };
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next)
   .use(LanguageDetector)
   .init({
     resources,
-    lng: "en", // default language
+    lng: "en", 
     debug:true,
-    fallbackLng: "en", // fallback language in case selected language file is missing
+    fallbackLng: "en", 
     interpolation: {
-      escapeValue: false, // react already safes from xss
+      escapeValue: false, 
     },
   });
 

@@ -36,3 +36,75 @@
     transform: rotate(360deg);
   }
 }
+
+
+
+/* custom.css */
+.navbar .nav-link, .navbar .dropdown-item {
+  color: white !important;
+}
+
+.navbar .nav-link:hover, .navbar .nav-link:focus,
+.navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
+  color: white !important;
+  background-color: transparent; 
+}
+
+.navbar .dropdown-menu {
+  background-color: #333333;
+}
+
+.navbar .dropdown-menu .dropdown-item:hover, .navbar .dropdown-menu .dropdown-item:focus {
+  background-color: #444444;
+}
+
+.icon {
+  cursor: pointer;
+  margin-right: 8px;
+  /* Add any additional styling you need */
+}
+
+.collapsible-content .main-text {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.collapsible-content .description {
+  margin-left: 24px; /* Indent the description text for better readability */
+}
+
+
+
+.headings {
+  font-family: "Orator_Std_Medium", sans-serif;
+}
+
+.headings h2 {
+  font-size: 28pt;
+}
+
+
+/* App.css or any other global CSS file */
+.chat-box {
+  margin-top: 50px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.messages {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.message {
+  background-color: #f0f0f0;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.message:last-child {
+  margin-bottom: 0;
+}
