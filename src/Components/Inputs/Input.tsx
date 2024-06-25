@@ -6,17 +6,18 @@ import { useTranslation } from 'react-i18next';
 interface InputProps {
   label: string;
   type: string;
+  name: string;
   placeholder: string;
   value: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ label, type, placeholder, value, onChange }) => {
+const Input: React.FC<InputProps> = ({ label, type, name, placeholder, value, onChange }) => {
   const { t } = useTranslation();
   return (
     <Form.Group className="mb-3">
       <Form.Label>{t(label)}</Form.Label>
-      <Form.Control type={type} placeholder={t(placeholder)} value={value} onChange={onChange} />
+      <Form.Control type={type} name={name} placeholder={t(placeholder)} value={value} onChange={onChange} />
     </Form.Group>
   );
 };

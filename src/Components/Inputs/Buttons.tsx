@@ -21,7 +21,7 @@ const Buttons: React.FC<ButtonsProps> = ({ variant, text, onClick, className, to
       </Button>
     </LinkContainer>
   ) : (
-    <Button variant={variant} onClick={onClick} className={className}>
+    <Button variant={variant} onClick={onClick} className={className} type="submit">
       {t(text)}
     </Button>
   );
