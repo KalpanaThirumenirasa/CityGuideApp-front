@@ -4,11 +4,14 @@ import Home from "./Pages/Unregistered Area/Home";
 import Login from "./Pages/Unregistered Area/Login";
 import Register from "./Pages/Unregistered Area/Register";
 import Explore from "./Pages/Unregistered Area/Explore";
+import Hotels from "./Pages/Registered Area/Hotels";
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Restaurents from "./Pages/Registered Area/Restaurents";
+import AddHotels from "./Pages/Admin/AddHotels"
 
 
 function App() {
@@ -27,6 +30,9 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/explore" element={<Explore />}></Route>
+        <Route path="/hotels" element={<Hotels />}></Route>
+        <Route path="/restaurents" element={<Restaurents />}></Route>
+        <Route path="/addHotels" element={<AddHotels />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

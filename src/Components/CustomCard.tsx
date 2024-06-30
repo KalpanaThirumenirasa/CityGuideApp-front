@@ -2,9 +2,11 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Buttons from "./Inputs/Buttons"; 
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 interface CustomCardProps {
   title: string;
+  desc: string;
   imageUrl: string;
   buttonText: string;
   onClick?: () => void;
@@ -12,6 +14,7 @@ interface CustomCardProps {
 
 const CustomCard: React.FC<CustomCardProps> = ({
   title,
+  desc,
   imageUrl,
   buttonText,
   onClick,
@@ -23,9 +26,10 @@ const CustomCard: React.FC<CustomCardProps> = ({
       <Card.Body>
         <Card.Title>{t(title)}</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of the card's content.
+        {t(desc)}
         </Card.Text>
-        <Buttons variant="primary" text={t(buttonText)} className="w-100" onClick={onClick} />
+        <Link to="/restaurants"> <Buttons variant="primary" text={t(buttonText)} className="w-100" onClick={onClick} /></Link>
+        
       </Card.Body>
     </Card>
   );

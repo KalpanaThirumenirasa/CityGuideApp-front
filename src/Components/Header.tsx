@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   return (
     <Navbar expand="lg" style={{ backgroundColor: "#333333" }}>
       <Container>
-        <Navbar.Brand href="/home">
+        <Navbar.Brand href="/">
           <img src={logo} alt="logo"  style={{ height: '40px' }} />
         </Navbar.Brand>
         <Nav className="ml-auto">

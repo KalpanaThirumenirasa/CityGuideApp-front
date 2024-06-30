@@ -47,12 +47,14 @@ const Login: React.FC = () => {
           <div className="headings">
             <h2 className="text-center mb-4">{t("Login")}</h2>
           </div>
-
+          <h5>
+              {t("Enter your login details")}
+          </h5>
           <Form onSubmit={handleSubmit}>
             {error && <Alert variant="danger">{error}</Alert>}
 
             <Input
-              label="username"
+              label="Username"
               type="email"
               name="username"
               placeholder="Enter email"

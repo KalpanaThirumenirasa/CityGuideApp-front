@@ -38,29 +38,10 @@ const Home: React.FC = () => {
               <div className="mt-4">
                 <Buttons variant="primary" text="Register" to="/register" className="mx-3"/>
                 <Buttons variant="primary" text="Explore" to="/explore" />
-                <Buttons variant="primary" text="ADMIN" to="/addhotels" />
               </div>
            
         </Container>
       </div>
-
-      <Container className="mt-3 mb-3">
-        <div className="headings mt-3">
-          <h2 className="text-center mb-4 text-dark">
-            {t("Welcome to the District of Passau")}
-          </h2>
-        </div>
-
-        {cityData.map((item, index) => (
-          <Toggle
-            key={index}
-            title={t(item.title)}
-            description={t(item.description)}
-            isOpen={openIndex === index}
-            onClick={() => handleToggleClick(index)}
-          />
-        ))}
-      </Container>
       <ChatBox />
     </div>
   );
