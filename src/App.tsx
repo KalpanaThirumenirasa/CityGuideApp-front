@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Unregistered Area/Home";
 import Login from "./Pages/Unregistered Area/Login";
@@ -11,14 +11,18 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Restaurents from "./Pages/Registered Area/Restaurents";
-import AddHotels from "./Pages/Admin/AddHotels"
+import AddHotels from "./Pages/Admin/AddHotels";
+import Loader from "./Pages/Admin/layouts/loader/Loader";
+import React, { Suspense } from "react";
+import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import Event from "./Components/ExploreView";
 
 
 function App() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    const language = localStorage.getItem("lan") || "en"; 
+    const language = localStorage.getItem("lan") || "en";
     i18n.changeLanguage(language);
   }, [i18n]);
 
@@ -33,8 +37,17 @@ function App() {
         <Route path="/hotels" element={<Hotels />}></Route>
         <Route path="/restaurents" element={<Restaurents />}></Route>
         <Route path="/addHotels" element={<AddHotels />}></Route>
+        {/* <Route path="/event" element={<Event />}></Route> */}
+        <Route
+          path="/adminDashBoard/*"
+          element={
+            <Suspense fallback={<Loader />}>
+                <AdminDashboard />
+             </Suspense>
+          }
+        ></Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

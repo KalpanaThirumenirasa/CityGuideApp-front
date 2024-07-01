@@ -18,7 +18,6 @@ export const register = async (data: RegisterData): Promise<any> => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-console.log(response)
   return response.json();
 };
 
@@ -41,7 +40,7 @@ export const hotel = async (data: HotelData): Promise<any> => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-console.log(response)
+
   return response.json();
 };
 
@@ -63,6 +62,6 @@ export const login = async (data: LoginData): Promise<any> => {
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-console.log(response)
+
   return response.json();
 };

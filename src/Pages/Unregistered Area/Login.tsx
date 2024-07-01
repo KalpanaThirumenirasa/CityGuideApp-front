@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import Input from "../../Components/Inputs/Input";
 import Buttons from "../../Components/Inputs/Buttons";
 import { login, LoginData } from "../../Features/Services/authService";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const { t } = useTranslation();
@@ -15,6 +16,7 @@ const Login: React.FC = () => {
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -32,7 +34,7 @@ const Login: React.FC = () => {
 
     try {
       await login(formData);
-      console.log("Login successful!");
+      navigate("/explore");
     } catch (err) {
       setError((err as Error).message);
     } finally {

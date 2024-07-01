@@ -20,7 +20,7 @@ const Header: React.FC = () => {
           <img src={logo} alt="logo"  style={{ height: '40px' }} />
         </Navbar.Brand>
         <Nav className="ml-auto">
-          <NavDropdown title="language" id="basic-nav-dropdown" >
+          <NavDropdown   title="language" id="basic-nav-dropdown" >
             <NavDropdown.Item onClick={() => changeLanguage("en")} >
               English
             </NavDropdown.Item>

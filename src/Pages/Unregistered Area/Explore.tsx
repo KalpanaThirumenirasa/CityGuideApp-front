@@ -3,9 +3,11 @@ import CustomCard from "../../Components/CustomCard";
 import { Container, Row, Col } from "react-bootstrap";
 import { cardData } from "../../Data/explore";
 import { Link } from "react-router-dom";
+import ChatBox from "../../Components/ChatBox";
 
 const Explore: React.FC = () => {
   return (
+    <div>
     <Container>
       <Row>
         {cardData.map((card, index) => (
@@ -20,6 +22,9 @@ const Explore: React.FC = () => {
         ))}
       </Row>
     </Container>
+    <ChatBox/>
+    </div>
+
   );
 };
 

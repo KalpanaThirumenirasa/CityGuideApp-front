@@ -1,11 +1,14 @@
 // src/app/store.ts
 
 import { configureStore } from '@reduxjs/toolkit';
+import restaurantReducer  from './Slices/restaurantSlice'
+import  hotelReducer from './Slices/hotelSlice'
 
 
 const store = configureStore({
   reducer: {
-    // auth: authReducer,
+    restaurants: restaurantReducer ,
+    hotels: hotelReducer
   },
 });
 

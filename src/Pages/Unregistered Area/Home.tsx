@@ -37,8 +37,8 @@ const Home: React.FC = () => {
               </h5>
               <div className="mt-4">
                 <Buttons variant="primary" text="Register" to="/register" className="mx-3"/>
-                <Buttons variant="primary" text="Explore" to="/explore" />
-                <Buttons variant="primary" text="ADMIN" to="/addhotels" />
+                <Buttons variant="primary" text="Explore" to="/explore"  className="mx-3"/>
+                <Buttons variant="primary" text="ADMIN" to="/adminDashBoard/starter" />
               </div>
            
         </Container>
@@ -61,7 +61,7 @@ const Home: React.FC = () => {
           />
         ))}
       </Container>
-      <ChatBox />
+      
     </div>
   );
 };
