@@ -40,9 +40,9 @@ const Restaurant: React.FC = () => {
         <div>
           <Card>
             <CardBody>
-              <CardTitle tag="h5">Project Listing</CardTitle>
+              <CardTitle tag="h5">Restaurant Listing</CardTitle>
               <CardSubtitle className="mb-2 text-muted" tag="h6">
-                Overview of the projects
+                Overview of the Restaurants
               </CardSubtitle>
 
               <Table

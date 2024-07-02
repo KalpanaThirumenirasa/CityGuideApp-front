@@ -15,7 +15,7 @@ import AddHotels from "./Pages/Admin/AddHotels";
 import Loader from "./Pages/Admin/layouts/loader/Loader";
 import React, { Suspense } from "react";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
-import Event from "./Components/ExploreView";
+import EditHotels from "./Pages/Admin/EditHotels";
 
 
 function App() {
@@ -37,6 +37,7 @@ function App() {
         <Route path="/hotels" element={<Hotels />}></Route>
         <Route path="/restaurents" element={<Restaurents />}></Route>
         <Route path="/addHotels" element={<AddHotels />}></Route>
+        <Route path="/editHotels/:id" element={<EditHotels />} />
         {/* <Route path="/event" element={<Event />}></Route> */}
         <Route
           path="/adminDashBoard/*"
@@ -47,7 +48,7 @@ function App() {
           }
         ></Route>
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 }

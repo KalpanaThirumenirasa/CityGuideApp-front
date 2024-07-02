@@ -3,9 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 
 const navigation = [
   {
-    title: "Dashboard",
-    href: "/starter",
-    icon: "bi bi-speedometer2",
+    title: "User",
+    href: "/adminDashBoard/User",
+    icon: "bi bi-layout-split",
   },
   
   {

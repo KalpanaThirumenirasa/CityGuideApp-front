@@ -1,19 +1,18 @@
-export interface HotelData {
+export interface UserData {
   _id: string;
-  hotelName: string;
-  desc: string;
-  address: string;
-  image: string;
-}
-export interface AddHotelData {
-  hotelName: string;
-  desc: string;
-  address: string;
-  image: string;
+  firstname: string;
+  username: string;
+  password: string;
 }
 
-export const addHotel = async (data: AddHotelData): Promise<any> => {
-  const response = await fetch('http://localhost:3000/api/hotel', {
+export interface AddUserData {
+  firstname: string;
+  username: string;
+  password: string;
+}
+
+export const addUser = async (data: AddUserData): Promise<any> => {
+  const response = await fetch('http://localhost:3000/api/user', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -28,8 +27,8 @@ export const addHotel = async (data: AddHotelData): Promise<any> => {
   return response.json();
 };
 
-export const fetchHotels = async (): Promise<HotelData[]> => {
-  const response = await fetch('http://localhost:3000/api/hotel', {
+export const fetchUsers = async (): Promise<UserData[]> => {
+  const response = await fetch('http://localhost:3000/api/user', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -41,11 +40,11 @@ export const fetchHotels = async (): Promise<HotelData[]> => {
   }
 
   const data = await response.json();
-  return data as HotelData[];
+  return data as UserData[];
 };
 
-export const fetchHotelById = async (id: string): Promise<HotelData> => {
-  const response = await fetch(`http://localhost:3000/api/hotel/${id}`, {
+export const fetchUserById = async (id: string): Promise<UserData> => {
+  const response = await fetch(`http://localhost:3000/api/user/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -57,11 +56,11 @@ export const fetchHotelById = async (id: string): Promise<HotelData> => {
   }
 
   const data = await response.json();
-  return data as HotelData;
+  return data as UserData;
 };
 
-export const updateHotel = async (id: string, data: AddHotelData): Promise<any> => {
-  const response = await fetch(`http://localhost:3000/api/hotel/${id}`, {
+export const updateUser = async (id: string, data: AddUserData): Promise<any> => {
+  const response = await fetch(`http://localhost:3000/api/user/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
