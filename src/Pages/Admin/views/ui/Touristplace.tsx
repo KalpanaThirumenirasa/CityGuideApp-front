@@ -3,22 +3,22 @@ import { Row, Col } from "reactstrap";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../Features/store";
-import { loadUsers } from "../../../../Features/Slices/userSlice";
+import { loadTouristPlaces } from "../../../../Features/Slices/touristplaceSlice";
 import Buttons from "../../../../Components/Inputs/Buttons";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const User: React.FC = () => {
+const TouristPlace: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
-    data: users,
+    data: touristPlaces,
     loading,
     error,
-  } = useSelector((state: RootState) => state.users);
+  } = useSelector((state: RootState) => state.touristPlaces);
 
   const navigate = useNavigate(); // Get the navigate function
 
   useEffect(() => {
-    dispatch(loadUsers());
+    dispatch(loadTouristPlaces());
   }, [dispatch]);
 
   if (loading) {
@@ -30,42 +30,56 @@ const User: React.FC = () => {
   }
 
   const handleEdit = (id: string) => {
-    navigate(`/editUsers/${id}`);
+    navigate(`/editTouristPlace/${id}`);
   };
 
   return (
     <Row>
       <Col lg="12" className="d-flex justify-content-end mb-3">
-        <Buttons variant="primary" text="Create" to="/addUsers" className="mx-3" />
+        <Buttons variant="primary" text="Create" to="/addTouristPlace" className="mx-3" />
       </Col>
       <Col lg="12">
         <div>
           <Card>
             <CardBody>
-              <CardTitle tag="h5">User Listing</CardTitle>
+              <CardTitle tag="h5">Tourist Place Listing</CardTitle>
               <CardSubtitle className="mb-2 text-muted" tag="h6">
-                Overview of the users
+                Overview of the tourist places
               </CardSubtitle>
 
               <Table className="no-wrap mt-3 align-middle" responsive borderless>
                 <thead>
                   <tr>
-                    <th>First Name</th>
-                    <th>Username</th>
+                    <th>Tourist Place</th>
+                    <th>Address</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {users.map((user) => (
-                    <tr key={user._id} className="border-top">
-                      <td>{user.firstname}</td>
-                      <td>{user.username}</td>
+                  {touristPlaces.map((touristPlace) => (
+                    <tr key={touristPlace._id} className="border-top">
+                      <td>
+                        <div className="d-flex align-items-center p-2">
+                          <img
+                            src={touristPlace.image}
+                            className="rounded-circle"
+                            alt="avatar"
+                            width="45"
+                            height="45"
+                          />
+                          <div className="ms-3">
+                            <h6 className="mb-0">{touristPlace.touristPlaceName}</h6>
+                            <span className="text-muted">{touristPlace.desc}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>{touristPlace.address}</td>
                       <td>
                         <button
                           className="btn btn-primary mx-2"
-                          onClick={() => handleEdit(user._id)}
+                          onClick={() => handleEdit(touristPlace._id)}
                         >
-                        Edit
+                          Edit
                         </button>
                       </td>
                     </tr>
@@ -80,4 +94,4 @@ const User: React.FC = () => {
   );
 };
 
-export default User;
+export default TouristPlace;

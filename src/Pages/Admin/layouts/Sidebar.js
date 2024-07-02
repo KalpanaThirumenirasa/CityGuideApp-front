@@ -20,7 +20,7 @@ const navigation = [
   },
   {
     title: "Events",
-    href: "/adminDashBoard/Events",
+    href: "/adminDashBoard/Event",
     icon: "bi bi-layout-split",
   },
   {
