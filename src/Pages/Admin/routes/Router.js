@@ -16,6 +16,8 @@ const Grid = lazy(() => import("../views/ui/Grid"));
 const User = lazy(() => import("../views/ui/User.tsx"));
 const Restaurant = lazy(() => import("../views/ui/Restaurant.tsx"));
 const Hotel = lazy(() => import("../views/ui/Hotel.tsx"));
+const Event = lazy(() => import("../views/ui/Event.tsx"));
+const Touristplace = lazy(() => import("../views/ui/Touristplace.tsx"));
 const Forms = lazy(() => import("../views/ui/Forms"));
 const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
 
@@ -37,6 +39,8 @@ const ThemeRoutes = [
       { path: "/User", exact: true, element: <User /> },
       { path: "/Restaurant", exact: true, element: <Restaurant /> },
       { path: "/Hotel", exact: true, element: <Hotel /> },
+      { path: "/Event", exact: true, element: <Event /> },
+      { path: "/Touristplace", exact: true, element: <Touristplace /> },
       { path: "/forms", exact: true, element: <Forms /> },
       { path: "/breadcrumbs", exact: true, element: <Breadcrumbs /> },
     ],

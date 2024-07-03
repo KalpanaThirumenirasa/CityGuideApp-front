@@ -3,22 +3,22 @@ import { Row, Col } from "reactstrap";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../Features/store";
-import { loadUsers } from "../../../../Features/Slices/userSlice";
+import { loadEvents } from "../../../../Features/Slices/eventSlice";
 import Buttons from "../../../../Components/Inputs/Buttons";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const User: React.FC = () => {
+const Event: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
-    data: users,
+    data: events,
     loading,
     error,
-  } = useSelector((state: RootState) => state.users);
+  } = useSelector((state: RootState) => state.events);
 
   const navigate = useNavigate(); // Get the navigate function
 
   useEffect(() => {
-    dispatch(loadUsers());
+    dispatch(loadEvents());
   }, [dispatch]);
 
   if (loading) {
@@ -30,42 +30,56 @@ const User: React.FC = () => {
   }
 
   const handleEdit = (id: string) => {
-    navigate(`/editUsers/${id}`);
+    navigate(`/editEvent/${id}`);
   };
 
   return (
     <Row>
       <Col lg="12" className="d-flex justify-content-end mb-3">
-        <Buttons variant="primary" text="Create" to="/addUsers" className="mx-3" />
+        <Buttons variant="primary" text="Create" to="/addEvent" className="mx-3" />
       </Col>
       <Col lg="12">
         <div>
           <Card>
             <CardBody>
-              <CardTitle tag="h5">User Listing</CardTitle>
+              <CardTitle tag="h5">Event Listing</CardTitle>
               <CardSubtitle className="mb-2 text-muted" tag="h6">
-                Overview of the users
+                Overview of the events
               </CardSubtitle>
 
               <Table className="no-wrap mt-3 align-middle" responsive borderless>
                 <thead>
                   <tr>
-                    <th>First Name</th>
-                    <th>Username</th>
+                    <th>Event</th>
+                    <th>Address</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {users.map((user) => (
-                    <tr key={user._id} className="border-top">
-                      <td>{user.firstname}</td>
-                      <td>{user.username}</td>
+                  {events.map((event) => (
+                    <tr key={event._id} className="border-top">
+                      <td>
+                        <div className="d-flex align-items-center p-2">
+                          <img
+                            src={event.image}
+                            className="rounded-circle"
+                            alt="avatar"
+                            width="45"
+                            height="45"
+                          />
+                          <div className="ms-3">
+                            <h6 className="mb-0">{event.eventName}</h6>
+                            <span className="text-muted">{event.desc}</span>
+                          </div>
+                        </div>
+                      </td>
+                      <td>{event.address}</td>
                       <td>
                         <button
                           className="btn btn-primary mx-2"
-                          onClick={() => handleEdit(user._id)}
+                          onClick={() => handleEdit(event._id)}
                         >
-                        Edit
+                          Edit
                         </button>
                       </td>
                     </tr>
@@ -80,4 +94,4 @@ const User: React.FC = () => {
   );
 };
 
-export default User;
+export default Event;

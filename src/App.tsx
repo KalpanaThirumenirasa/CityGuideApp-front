@@ -11,16 +11,19 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Restaurents from "./Pages/Registered Area/Restaurents";
-import AddHotels from "./Pages/Admin/AddHotels";
 import Loader from "./Pages/Admin/layouts/loader/Loader";
 import React, { Suspense } from "react";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
+import AddHotels from "./Pages/Admin/AddHotels";
 import EditHotels from "./Pages/Admin/EditHotels";
-import { ToastContainer } from "react-toastify";
-import Hotel from "./Pages/Registered Area/Hotel";
-import { RootState } from "./Features/store";
+import AddEvent from "./Pages/Admin/AddEvent";
+import EditEvent from "./Pages/Admin/EditEvent";
+import AddTouristplace from "./Pages/Admin/AddTouristplace";
+import EditTouristplace from "./Pages/Admin/EditTouristplace";
 import { useSelector } from "react-redux";
-
+import { RootState } from "./Features/store";
+import Hotel from "./Pages/Registered Area/Hotel";
+import { ToastContainer } from "react-toastify";
 function App() {
   const { i18n } = useTranslation();
 
@@ -43,6 +46,10 @@ function App() {
         <Route path="/restaurents" element={<Restaurents />}></Route>
         <Route path="/addHotels" element={<AddHotels />}></Route>
         <Route path="/editHotels/:id" element={<EditHotels />} />
+        <Route path="/addEvent" element={<AddEvent />}></Route>
+        <Route path="/editEvent/:id" element={<EditEvent />}></Route>
+        <Route path="/addTouristplace" element={<AddTouristplace />}></Route>
+        <Route path="/editTouristplace/:id" element={<EditTouristplace />}></Route>
         {/* <Route path="/event" element={<Event />}></Route> */}
 
         <Route

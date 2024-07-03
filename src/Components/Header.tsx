@@ -14,29 +14,29 @@ const Header: React.FC = () => {
   };
 
   return (
-    <Navbar expand="lg" style={{ backgroundColor: "#333333" }}>
-      <Container>
-        <Navbar.Brand href="/">
-          <img src={logo} alt="logo"  style={{ height: '40px' }} />
-        </Navbar.Brand>
-        <Nav className="ml-auto">
-          <NavDropdown   title="language" id="basic-nav-dropdown" >
-            <NavDropdown.Item onClick={() => changeLanguage("en")} >
-              English
-            </NavDropdown.Item>
-            <NavDropdown.Item onClick={() => changeLanguage("de")}>
-              Deutsch
-            </NavDropdown.Item>
-            <NavDropdown.Item onClick={() => changeLanguage("ta")}>
-              Tamil
-            </NavDropdown.Item>
-          </NavDropdown>
-          <LinkContainer to="/login">
-            <Nav.Link>{t("Login")}</Nav.Link>
-          </LinkContainer>
-        </Nav>
-      </Container>
-    </Navbar>
+        <Navbar expand="lg" style={{ backgroundColor: "#333333", color: "white" }}>
+          <Container>
+            <Navbar.Brand href="/">
+              <img src={logo} alt="logo" style={{ height: '40px' }} />
+            </Navbar.Brand>
+            <Nav className="ml-auto">
+              <NavDropdown title={t("Language")} id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={() => changeLanguage("en")}>
+                  English
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => changeLanguage("de")}>
+                  Deutsch
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={() => changeLanguage("ta")}>
+                  Tamil
+                </NavDropdown.Item>
+              </NavDropdown>
+              <LinkContainer to="/login">
+                <Nav.Link>{t("Login")}</Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Container>
+        </Navbar>
   );
 };
 
