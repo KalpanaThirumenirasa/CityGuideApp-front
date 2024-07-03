@@ -9,6 +9,7 @@ interface CustomCardProps {
   desc: string;
   imageUrl: string;
   buttonText: string;
+  linkUrl: string;
   onClick?: () => void;
 }
 
@@ -17,6 +18,7 @@ const CustomCard: React.FC<CustomCardProps> = ({
   desc,
   imageUrl,
   buttonText,
+  linkUrl,
   onClick,
 }) => {
   const { t } = useTranslation();
@@ -25,11 +27,10 @@ const CustomCard: React.FC<CustomCardProps> = ({
       <Card.Img variant="top" src={imageUrl} style={{ height: "200px", objectFit: "cover" }} />
       <Card.Body>
         <Card.Title>{t(title)}</Card.Title>
-        <Card.Text>
-        {t(desc)}
-        </Card.Text>
-        <Link to="/restaurants"> <Buttons variant="primary" text={t(buttonText)} className="w-100" onClick={onClick} /></Link>
-        
+        <Card.Text>{t(desc)}</Card.Text>
+        <Link to={linkUrl}>
+          <Buttons variant="primary" text={t(buttonText)} className="w-100" onClick={onClick} />
+        </Link>
       </Card.Body>
     </Card>
   );

@@ -6,16 +6,21 @@ import Input from "../../Components/Inputs/Input";
 import Buttons from "../../Components/Inputs/Buttons";
 import { login, LoginData } from "../../Features/Services/authService";
 import { useNavigate } from "react-router-dom";
+import { validateToken } from "../../Features/Slices/authSlice";
+import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
+import { translateText } from "../../Features/Services/translateService";
+import { log } from "console";
 
 const Login: React.FC = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState<LoginData>({
     username: "",
     password: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,14 +34,16 @@ const Login: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    setError(null);
-
-
+   
     try {
-      await login(formData);
-      navigate("/explore");
+      const result = await translateText();
+      console.log(result);
+      // await login(formData);
+      // await validateToken(dispatch);
+      // toast.success("Successfully Logged In")
+      // navigate("/explore");
     } catch (err) {
-      setError((err as Error).message);
+      toast.error("Login Failed")
     } finally {
       setLoading(false);
     }
@@ -49,12 +56,8 @@ const Login: React.FC = () => {
           <div className="headings">
             <h2 className="text-center mb-4">{t("Login")}</h2>
           </div>
-          <h5>
-              {t("Enter your login details")}
-          </h5>
+          <h5>{t("Enter your login details")}</h5>
           <Form onSubmit={handleSubmit}>
-            {error && <Alert variant="danger">{error}</Alert>}
-
             <Input
               label="Username"
               type="email"
@@ -71,7 +74,11 @@ const Login: React.FC = () => {
               value={formData.password}
               onChange={handleChange}
             />
-            <Buttons variant="primary" text={loading ? "Logging in..." : "Login"} className="w-100" />
+            <Buttons
+              variant="primary"
+              text={loading ? "Logging in..." : "Login"}
+              className="w-100"
+            />
           </Form>
         </Col>
       </Row>

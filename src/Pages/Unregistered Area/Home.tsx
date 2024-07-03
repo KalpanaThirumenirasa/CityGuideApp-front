@@ -5,6 +5,9 @@ import Buttons from "../../Components/Inputs/Buttons";
 import { cityData } from "../../Data/city";
 import Toggle from "../../Components/Toggle";
 import ChatBox from "../../Components/ChatBox";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Features/store";
+import { UserRole } from "../../Features/Slices/authSlice";
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -13,6 +16,7 @@ const Home: React.FC = () => {
   const handleToggleClick = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+  const { isLoggedIn, role } = useSelector((state: RootState) => state.auth);
 
   const backgroundImage =
     "https://image.geo.de/30151392/t/q1/v3/w1440/r0/-/passau-s-402665383-jpg--86369-.jpg";
@@ -28,19 +32,32 @@ const Home: React.FC = () => {
         }}
       >
         <Container className="py-5 text-white" style={{ height: "100%" }}>
-          
-              <h1>{t("Guide To New Comers")}</h1>
-              <h5>
-                {t(
-                  "This is an application for you to understand Passau Better!"
-                )}
-              </h5>
-              <div className="mt-4">
-                <Buttons variant="primary" text="Register" to="/register" className="mx-3"/>
-                <Buttons variant="primary" text="Explore" to="/explore"  className="mx-3"/>
-                <Buttons variant="primary" text="ADMIN" to="/adminDashBoard/starter" className="mx-3" />
-              </div>
-           
+          <h1>{t("Guide To New Comers")}</h1>
+          <h5>
+            {t("This is an application for you to understand Passau Better!")}
+          </h5>
+          <div className="mt-4">
+            <Buttons
+              variant="primary"
+              text="Register"
+              to="/register"
+              className="mx-3"
+            />
+            <Buttons
+              variant="primary"
+              text="Explore"
+              to="/explore"
+              className="mx-3"
+            />
+            {isLoggedIn && role === UserRole.ADMIN && (
+              <Buttons
+                variant="primary"
+                text="ADMIN"
+                to="/adminDashBoard/starter"
+                className="mx-3"
+              />
+            )}
+          </div>
         </Container>
       </div>
 
@@ -61,7 +78,6 @@ const Home: React.FC = () => {
           />
         ))}
       </Container>
-      
     </div>
   );
 };

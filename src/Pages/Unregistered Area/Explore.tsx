@@ -2,7 +2,6 @@ import React from "react";
 import CustomCard from "../../Components/CustomCard";
 import { Container, Row, Col } from "react-bootstrap";
 import { cardData } from "../../Data/explore";
-import { Link } from "react-router-dom";
 import ChatBox from "../../Components/ChatBox";
 
 const Explore: React.FC = () => {
@@ -17,6 +16,7 @@ const Explore: React.FC = () => {
               desc={card.desc}
               imageUrl={card.imageUrl}
               buttonText="View"
+              linkUrl ={card.linkUrl}
             />
           </Col>
         ))}

@@ -9,6 +9,7 @@ import i18n from "./Translation/i18n";
 import "./Pages/Admin/assets/scss/style.scss";
 import { Provider } from "react-redux";
 import store from "./Features/store";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

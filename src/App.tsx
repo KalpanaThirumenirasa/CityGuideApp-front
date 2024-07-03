@@ -16,7 +16,10 @@ import Loader from "./Pages/Admin/layouts/loader/Loader";
 import React, { Suspense } from "react";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import EditHotels from "./Pages/Admin/EditHotels";
-
+import { ToastContainer } from "react-toastify";
+import Hotel from "./Pages/Registered Area/Hotel";
+import { RootState } from "./Features/store";
+import { useSelector } from "react-redux";
 
 function App() {
   const { i18n } = useTranslation();
@@ -25,6 +28,8 @@ function App() {
     const language = localStorage.getItem("lan") || "en";
     i18n.changeLanguage(language);
   }, [i18n]);
+
+  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
   return (
     <BrowserRouter>
@@ -39,16 +44,19 @@ function App() {
         <Route path="/addHotels" element={<AddHotels />}></Route>
         <Route path="/editHotels/:id" element={<EditHotels />} />
         {/* <Route path="/event" element={<Event />}></Route> */}
+
         <Route
           path="/adminDashBoard/*"
           element={
             <Suspense fallback={<Loader />}>
-                <AdminDashboard />
-             </Suspense>
+              <AdminDashboard />
+            </Suspense>
           }
         ></Route>
+        {isLoggedIn && <Route path="explore/hotel" element={<Hotel />} />}
       </Routes>
       <Footer />
+      <ToastContainer />
     </BrowserRouter>
   );
 }
