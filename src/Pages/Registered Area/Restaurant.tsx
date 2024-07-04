@@ -1,11 +1,12 @@
 // src/Pages/Hotel.tsx
 import React, { useEffect } from "react";
-import { loadHotels } from "../../Features/Slices/hotelSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../Features/store";
 import ExploreView from "../../Components/ExploreView";
 import { Container, Spinner, Alert } from "react-bootstrap";
+import { loadEvents } from "../../Features/Slices/eventSlice";
+import { loadRestaurants } from "../../Features/Slices/restaurantSlice";
 
 
 const Hotel: React.FC = () => {
@@ -15,7 +16,7 @@ const Hotel: React.FC = () => {
     data: hotels,
     loading,
     error,
-  } = useSelector((state: RootState) => state.hotels);
+  } = useSelector((state: RootState) => state.restaurants);
   const {
     isLoggedIn
   } = useSelector((state: RootState) => state.auth);
@@ -25,7 +26,7 @@ const Hotel: React.FC = () => {
   }
 
   useEffect(() => {
-    dispatch(loadHotels());
+    dispatch(loadRestaurants());
   }, [dispatch]);
 
   if (loading) {
@@ -49,7 +50,7 @@ const Hotel: React.FC = () => {
       {hotels.map((hotel) => (
         <ExploreView
           key={hotel._id}
-          title={hotel.hotelName}
+          title={hotel.restaurantName}
           text={hotel.desc}
           imgSrc={hotel.image}
         />

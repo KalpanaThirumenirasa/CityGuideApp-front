@@ -70,9 +70,10 @@ const Restaurant: React.FC = () => {
                             height="45"
                           />
                           <div className="ms-3">
-                            <h6 className="mb-0">
-                              {restaurant.restaurantName}
-                            </h6>
+                         
+                            <div className="tile"> {restaurant.restaurantName}</div>
+                             
+                         
                             <span className="text-muted">
                               {restaurant.desc}
                             </span>

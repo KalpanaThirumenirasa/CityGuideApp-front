@@ -6,16 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../Features/store";
 import ExploreView from "../../Components/ExploreView";
 import { Container, Spinner, Alert } from "react-bootstrap";
+import { loadTouristPlaces } from "../../Features/Slices/touristplaceSlice";
 
 
-const Hotel: React.FC = () => {
+const Tourist: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const {
     data: hotels,
     loading,
     error,
-  } = useSelector((state: RootState) => state.hotels);
+  } = useSelector((state: RootState) => state.touristPlaces);
   const {
     isLoggedIn
   } = useSelector((state: RootState) => state.auth);
@@ -25,7 +26,7 @@ const Hotel: React.FC = () => {
   }
 
   useEffect(() => {
-    dispatch(loadHotels());
+    dispatch(loadTouristPlaces());
   }, [dispatch]);
 
   if (loading) {
@@ -49,7 +50,7 @@ const Hotel: React.FC = () => {
       {hotels.map((hotel) => (
         <ExploreView
           key={hotel._id}
-          title={hotel.hotelName}
+          title={hotel.touristPlaceName}
           text={hotel.desc}
           imgSrc={hotel.image}
         />
@@ -58,4 +59,4 @@ const Hotel: React.FC = () => {
   );
 };
 
-export default Hotel;
+export default Tourist;

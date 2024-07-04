@@ -27,6 +27,9 @@ import { ToastContainer } from "react-toastify";
 import { validateToken } from "./Features/Slices/authSlice";
 import ChatBox from "./Components/ChatBox";
 import { getChatUser } from "./Features/Slices/chatSlice";
+import Event from "./Pages/Registered Area/Events";
+import Restaurants from "./Pages/Registered Area/Restaurents";
+import Tourist from "./Pages/Registered Area/Tourist";
 
 function App() {
   const { i18n } = useTranslation();
@@ -77,6 +80,9 @@ function App() {
           }
         ></Route>
         <Route path="explore/hotel" element={<Hotel />} />
+        <Route path="explore/event" element={<Event />} />
+        <Route path="explore/restaurant" element={<Restaurants />} />
+        <Route path="explore/tourist" element={<Tourist />} />
       </Routes>
       {isLoggedIn && <ChatBox />}
       <Footer />

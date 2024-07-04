@@ -68,7 +68,8 @@ const TouristPlace: React.FC = () => {
                             height="45"
                           />
                           <div className="ms-3">
-                            <h6 className="mb-0">{touristPlace.touristPlaceName}</h6>
+                          <div className="tile"> {touristPlace.touristPlaceName}</div>
+                            
                             <span className="text-muted">{touristPlace.desc}</span>
                           </div>
                         </div>
