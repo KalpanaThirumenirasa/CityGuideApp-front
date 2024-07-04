@@ -1,3 +1,4 @@
+//Static Data
 export const cityData: { title: string; description: string }[] = [
   {
     title: "Welcome to Passau",

@@ -5,7 +5,7 @@ import Input from "../../Components/Inputs/Input";
 import Buttons from "../../Components/Inputs/Buttons";
 import { register, RegisterData } from "../../Features/Services/authService";
 import { toast } from 'react-toastify';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState<RegisterData>({
@@ -31,8 +31,8 @@ const Register: React.FC = () => {
 
     try {
       await register(formData);
-      toast.success("Successfully Logged In")
-      navigate("/explore");
+      toast.success("Successfully Registered")
+      navigate("/login");
       setFormData({ firstname: "", username: "", password: "" });
     } catch (err) {
       toast.error("Registration Failed")
@@ -80,6 +80,7 @@ const Register: React.FC = () => {
               className="w-100"
             />
           </Form>
+          <Link to="/login"><p>{t("Already Registered? Login here")}</p></Link>
         </Col>
       </Row>
     </Container>

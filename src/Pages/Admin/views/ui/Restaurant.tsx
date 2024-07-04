@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../../Features/store";
 import { loadRestaurants } from "../../../../Features/Slices/restaurantSlice";
+import Buttons from "../../../../Components/Inputs/Buttons";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const Restaurant: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -12,6 +14,8 @@ const Restaurant: React.FC = () => {
     loading,
     error,
   } = useSelector((state: RootState) => state.restaurants);
+
+  const navigate = useNavigate(); // Get the navigate function
 
   useEffect(() => {
     dispatch(loadRestaurants());
@@ -25,16 +29,14 @@ const Restaurant: React.FC = () => {
     return <div>Error: {error}</div>;
   }
 
+  const handleEdit = (id: string) => {
+    navigate(`/editRestaurant/${id}`);
+  };
+
   return (
     <Row>
       <Col lg="12" className="d-flex justify-content-end mb-3">
-        <button
-          type="button"
-          className="btn btn-success"
-          style={{ width: "150px" }}
-        >
-          CREATE
-        </button>
+        <Buttons variant="primary" text="Create" to="/addRestaurant" className="mx-3" />
       </Col>
       <Col lg="12">
         <div>
@@ -45,11 +47,7 @@ const Restaurant: React.FC = () => {
                 Overview of the Restaurants
               </CardSubtitle>
 
-              <Table
-                className="no-wrap mt-3 align-middle"
-                responsive
-                borderless
-              >
+              <Table className="no-wrap mt-3 align-middle" responsive borderless>
                 <thead>
                   <tr>
                     <th>Restaurant</th>
@@ -70,18 +68,17 @@ const Restaurant: React.FC = () => {
                             height="45"
                           />
                           <div className="ms-3">
-                            <h6 className="mb-0">
-                              {restaurant.restaurantName}
-                            </h6>
-                            <span className="text-muted">
-                              {restaurant.desc}
-                            </span>
+                            <h6 className="mb-0">{restaurant.restaurantName}</h6>
+                            <span className="text-muted">{restaurant.desc}</span>
                           </div>
                         </div>
                       </td>
                       <td>{restaurant.address}</td>
                       <td>
-                        <button type="button" className="btn btn-primary">
+                        <button
+                          className="btn btn-primary mx-2"
+                          onClick={() => handleEdit(restaurant._id)}
+                        >
                           Edit
                         </button>
                       </td>

@@ -1,49 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Alert } from "react-bootstrap";
-import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Input from "../../Components/Inputs/Input";
 import Buttons from "../../Components/Inputs/Buttons";
-import { AddEventData, fetchEventById, updateEvent } from "../../Features/Services/eventService";
+import { useNavigate, useParams } from "react-router-dom";
+import { TouristPlaceData, fetchTouristPlaceById, updateTouristPlace } from "../../Features/Services/touristplaceService";
 
-const EditEvent: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const [formData, setFormData] = useState<AddEventData>({
-    eventName: "",
-    desc: "",
-    address: "",
-    image: "",
-  });
+const EditTouristplace: React.FC = () => {
+  const [formData, setFormData] = useState<TouristPlaceData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const { t } = useTranslation();
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    const fetchEventData = async () => {
+    const fetchTouristPlaceData = async () => {
       try {
-        const data = await fetchEventById(id!);
-        setFormData({
-          eventName: data.eventName,
-          desc: data.desc,
-          address: data.address,
-          image: data.image,
-        });
+        const data = await fetchTouristPlaceById(id!);
+        setFormData(data);
       } catch (err) {
         setError((err as Error).message);
       }
     };
 
-    fetchEventData();
+    fetchTouristPlaceData();
   }, [id]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (formData) {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -53,7 +45,12 @@ const EditEvent: React.FC = () => {
     setSuccess(false);
 
     try {
-      await updateEvent(id!, formData);
+      await updateTouristPlace(id!, {
+        touristplaceName: formData!.touristplaceName,
+        desc: formData!.desc,
+        address: formData!.address,
+        image: formData!.image,
+      });
       setSuccess(true);
     } catch (err) {
       setError((err as Error).message);
@@ -63,29 +60,31 @@ const EditEvent: React.FC = () => {
   };
 
   const handleBack = () => {
-    navigate(-1); // Navigate to the previous page
+    navigate(-1);
   };
+
+  if (!formData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container fluid className="d-flex vh-100">
       <Row className="m-auto align-self-center justify-content-center w-100">
         <Col xs={12} lg={6} className="p-4 border rounded shadow-sm bg-white">
           <div className="headings">
-            <h2 className="text-center mb-4">{t("Edit Event")}</h2>
+            <h2 className="text-center mb-4">{t("Edit Tourist Place")}</h2>
           </div>
 
           <Form onSubmit={handleSubmit}>
             {error && <Alert variant="danger">{error}</Alert>}
-            {success && (
-              <Alert variant="success">{t("Event updated successfully!")}</Alert>
-            )}
+            {success && <Alert variant="success">{t("Tourist Place updated successfully!")}</Alert>}
 
             <Input
-              label="Event Name"
+              label="Tourist Place Name"
               type="text"
-              name="eventName"
-              placeholder="Enter event name"
-              value={formData.eventName}
+              name="touristPlaceName"
+              placeholder="Enter tourist place name"
+              value={formData.touristplaceName}
               onChange={handleChange}
             />
             <Input
@@ -121,7 +120,7 @@ const EditEvent: React.FC = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            style={{ width: "150px", marginTop: "10px" }} // Added marginTop to give some space
+            style={{ width: "150px", marginTop: "10px" }}
             onClick={handleBack}
           >
             BACK
@@ -132,4 +131,4 @@ const EditEvent: React.FC = () => {
   );
 };
 
-export default EditEvent;
+export default EditTouristplace;

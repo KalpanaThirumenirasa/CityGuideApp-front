@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { validateToken } from "../../Features/Slices/authSlice";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const { t } = useTranslation();
@@ -76,6 +77,7 @@ const Login: React.FC = () => {
               className="w-100"
             />
           </Form>
+          <Link to="/register"><p>{t("Not Registered yet? Register here")}</p></Link>
         </Col>
       </Row>
     </Container>

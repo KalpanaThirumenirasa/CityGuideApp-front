@@ -76,17 +76,17 @@
 
 
 
-.heading {
+.heading { /* THD corporate identity */
   font-family: 'Orator_Std_Medium';
   font-size: 28pt;
 }
 
-.tile {
+.tile { /* THD corporate identity */
   font-family: 'Saira', sans-serif !important;
   font-size: 28px;
 }
 
-body {
+body { /* THD corporate identity */
   font-family: 'Saira', sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
@@ -96,7 +96,7 @@ body {
   box-sizing: border-box;
 }
 
-:root {
+:root { /* THD corporate identity */
   --thd-blau: #1a4273;
   --donau-blau: #009fe3;
   --dark-grey: #313131;

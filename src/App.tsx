@@ -18,8 +18,6 @@ import AddHotels from "./Pages/Admin/AddHotels";
 import EditHotels from "./Pages/Admin/EditHotels";
 import AddEvent from "./Pages/Admin/AddEvent";
 import EditEvent from "./Pages/Admin/EditEvent";
-import AddTouristplace from "./Pages/Admin/AddTouristplace";
-import EditTouristplace from "./Pages/Admin/EditTouristplace";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./Features/store";
 import Hotel from "./Pages/Registered Area/Hotel";
@@ -27,6 +25,10 @@ import { ToastContainer } from "react-toastify";
 import { validateToken } from "./Features/Slices/authSlice";
 import ChatBox from "./Components/ChatBox";
 import { getChatUser } from "./Features/Slices/chatSlice";
+import AddRestaurant from "./Pages/Admin/AddRestaurant";
+import EditRestaurant from "./Pages/Admin/EditRestaurant";
+import AddTouristplace from "./Pages/Admin/AddTouristplace";
+import EditTouristplace from "./Pages/Admin/EditTouristplace";
 
 function App() {
   const { i18n } = useTranslation();
@@ -61,13 +63,12 @@ function App() {
         <Route path="/restaurents" element={<Restaurents />}></Route>
         <Route path="/addHotels" element={<AddHotels />}></Route>
         <Route path="/editHotels/:id" element={<EditHotels />} />
+        <Route path="/addRestaurant" element={<AddRestaurant />}></Route>
+        <Route path="/editRestaurant/:id" element={<EditRestaurant />} />
         <Route path="/addEvent" element={<AddEvent />}></Route>
         <Route path="/editEvent/:id" element={<EditEvent />}></Route>
-        <Route path="/addTouristplace" element={<AddTouristplace />}></Route>
-        <Route
-          path="/editTouristplace/:id"
-          element={<EditTouristplace />}
-        ></Route>
+        <Route path="/addTouristPlace" element={<AddTouristplace />}></Route>
+        <Route path="/editTouristPlace/:id" element={<EditTouristplace />}></Route>
         <Route
           path="/adminDashBoard/*"
           element={

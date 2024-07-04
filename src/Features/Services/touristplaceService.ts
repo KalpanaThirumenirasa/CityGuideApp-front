@@ -2,14 +2,14 @@
 
 export interface TouristPlaceData {
   _id: string;
-  touristPlaceName: string;
+  touristplaceName: string;
   desc: string;
   address: string;
   image: string;
 }
 
 export interface AddTouristPlaceData {
-  touristPlaceName: string;
+  touristplaceName: string;
   desc: string;
   address: string;
   image: string;

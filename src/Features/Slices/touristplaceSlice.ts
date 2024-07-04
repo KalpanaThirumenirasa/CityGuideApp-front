@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchTouristPlaces, fetchTouristPlaceById, addTouristPlace, updateTouristPlace } from "../Services/touristplaceService";
-import { TouristPlaceData, AddTouristPlaceData } from "../Services/touristplaceService";
+import { fetchTouristPlaces, TouristPlaceData } from "../Services/touristplaceService";
+
 
 interface TouristPlaceState {
   data: TouristPlaceData[];

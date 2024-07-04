@@ -1,30 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Alert } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Input from "../../Components/Inputs/Input";
 import Buttons from "../../Components/Inputs/Buttons";
-import { useNavigate } from "react-router-dom";
-import { AddTouristPlaceData, addTouristPlace } from "../../Features/Services/touristplaceService";
+import { useNavigate, useParams } from "react-router-dom";
+import { RestaurantData, fetchRestaurantById, updateRestaurant } from "../../Features/Services/restaurantService";
 
-const AddTouristplace: React.FC = () => {
-  const [formData, setFormData] = useState<AddTouristPlaceData>({
-    touristplaceName: "",
-    desc: "",
-    address: "",
-    image: "",
-  });
+const EditRestaurant: React.FC = () => {
+  const [formData, setFormData] = useState<RestaurantData | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const { t } = useTranslation();
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    const fetchRestaurantData = async () => {
+      try {
+        const data = await fetchRestaurantById(id!);
+        setFormData(data);
+      } catch (err) {
+        setError((err as Error).message);
+      }
+    };
+
+    fetchRestaurantData();
+  }, [id]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (formData) {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -34,9 +45,13 @@ const AddTouristplace: React.FC = () => {
     setSuccess(false);
 
     try {
-      await addTouristPlace(formData);
+      await updateRestaurant(id!, {
+        restaurantName: formData!.restaurantName,
+        desc: formData!.desc,
+        address: formData!.address,
+        image: formData!.image,
+      });
       setSuccess(true);
-      setFormData({ touristplaceName: "", desc: "", address: "", image: "" });
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -45,29 +60,31 @@ const AddTouristplace: React.FC = () => {
   };
 
   const handleBack = () => {
-    navigate(-1); // Navigate to the previous page
+    navigate(-1);
   };
+
+  if (!formData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container fluid className="d-flex vh-100">
       <Row className="m-auto align-self-center justify-content-center w-100">
         <Col xs={12} lg={6} className="p-4 border rounded shadow-sm bg-white">
           <div className="headings">
-            <h2 className="text-center mb-4">{t("Add Tourist Place")}</h2>
+            <h2 className="text-center mb-4">{t("Edit Restaurant")}</h2>
           </div>
 
           <Form onSubmit={handleSubmit}>
             {error && <Alert variant="danger">{error}</Alert>}
-            {success && (
-              <Alert variant="success">{t("Tourist place added successfully!")}</Alert>
-            )}
+            {success && <Alert variant="success">{t("Restaurant updated successfully!")}</Alert>}
 
             <Input
-              label="Tourist Place Name"
+              label="Restaurant Name"
               type="text"
-              name="touristplaceName"
-              placeholder="Enter tourist place name"
-              value={formData.touristplaceName}
+              name="restaurantName"
+              placeholder="Enter restaurant name"
+              value={formData.restaurantName}
               onChange={handleChange}
             />
             <Input
@@ -96,14 +113,14 @@ const AddTouristplace: React.FC = () => {
             />
             <Buttons
               variant="primary"
-              text={loading ? "Adding..." : "Add"}
+              text={loading ? "Updating..." : "Update"}
               className="w-100"
             />
           </Form>
           <button
             type="button"
             className="btn btn-secondary"
-            style={{ width: "150px", marginTop: "10px" }} // Added marginTop to give some space
+            style={{ width: "150px", marginTop: "10px" }}
             onClick={handleBack}
           >
             BACK
@@ -114,4 +131,4 @@ const AddTouristplace: React.FC = () => {
   );
 };
 
-export default AddTouristplace;
+export default EditRestaurant;

@@ -4,20 +4,20 @@ import { useTranslation } from "react-i18next";
 import Input from "../../Components/Inputs/Input";
 import Buttons from "../../Components/Inputs/Buttons";
 import { useNavigate } from "react-router-dom";
-import { AddTouristPlaceData, addTouristPlace } from "../../Features/Services/touristplaceService";
+import { AddRestaurantData, addRestaurant } from "../../Features/Services/restaurantService";
 
-const AddTouristplace: React.FC = () => {
-  const [formData, setFormData] = useState<AddTouristPlaceData>({
-    touristplaceName: "",
-    desc: "",
+const AddRestaurant: React.FC = () => {
+  const [formData, setFormData] = useState<AddRestaurantData>({
+    restaurantName: "",
     address: "",
+    desc: "",
     image: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const { t } = useTranslation();
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -34,9 +34,9 @@ const AddTouristplace: React.FC = () => {
     setSuccess(false);
 
     try {
-      await addTouristPlace(formData);
+      await addRestaurant(formData);
       setSuccess(true);
-      setFormData({ touristplaceName: "", desc: "", address: "", image: "" });
+      setFormData({ restaurantName: "", desc: "", address: "", image: "" });
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -45,7 +45,7 @@ const AddTouristplace: React.FC = () => {
   };
 
   const handleBack = () => {
-    navigate(-1); // Navigate to the previous page
+    navigate(-1);
   };
 
   return (
@@ -53,21 +53,21 @@ const AddTouristplace: React.FC = () => {
       <Row className="m-auto align-self-center justify-content-center w-100">
         <Col xs={12} lg={6} className="p-4 border rounded shadow-sm bg-white">
           <div className="headings">
-            <h2 className="text-center mb-4">{t("Add Tourist Place")}</h2>
+            <h2 className="text-center mb-4">{t("Add Restaurant")}</h2>
           </div>
 
           <Form onSubmit={handleSubmit}>
             {error && <Alert variant="danger">{error}</Alert>}
             {success && (
-              <Alert variant="success">{t("Tourist place added successfully!")}</Alert>
+              <Alert variant="success">{t("Restaurant added successfully!")}</Alert>
             )}
 
             <Input
-              label="Tourist Place Name"
+              label="Restaurant Name"
               type="text"
-              name="touristplaceName"
-              placeholder="Enter tourist place name"
-              value={formData.touristplaceName}
+              name="restaurantName"
+              placeholder="Enter restaurant name"
+              value={formData.restaurantName}
               onChange={handleChange}
             />
             <Input
@@ -103,7 +103,7 @@ const AddTouristplace: React.FC = () => {
           <button
             type="button"
             className="btn btn-secondary"
-            style={{ width: "150px", marginTop: "10px" }} // Added marginTop to give some space
+            style={{ width: "150px", marginTop: "10px" }}
             onClick={handleBack}
           >
             BACK
@@ -114,4 +114,4 @@ const AddTouristplace: React.FC = () => {
   );
 };
 
-export default AddTouristplace;
+export default AddRestaurant;

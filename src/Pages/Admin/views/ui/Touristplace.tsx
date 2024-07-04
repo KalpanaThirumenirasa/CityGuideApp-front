@@ -7,7 +7,7 @@ import { loadTouristPlaces } from "../../../../Features/Slices/touristplaceSlice
 import Buttons from "../../../../Components/Inputs/Buttons";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-const TouristPlace: React.FC = () => {
+const Touristplace: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const {
     data: touristPlaces,
@@ -68,7 +68,7 @@ const TouristPlace: React.FC = () => {
                             height="45"
                           />
                           <div className="ms-3">
-                            <h6 className="mb-0">{touristPlace.touristPlaceName}</h6>
+                            <h6 className="mb-0">{touristPlace.touristplaceName}</h6>
                             <span className="text-muted">{touristPlace.desc}</span>
                           </div>
                         </div>
@@ -94,4 +94,4 @@ const TouristPlace: React.FC = () => {
   );
 };
 
-export default TouristPlace;
+export default Touristplace;
