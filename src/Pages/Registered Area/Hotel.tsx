@@ -6,14 +6,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../Features/store";
 import ExploreView from "../../Components/ExploreView";
 import { Container, Spinner, Alert } from "react-bootstrap";
+import { toast } from 'react-toastify';
 
 const Hotel: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const {
     data: hotels,
     loading,
     error,
   } = useSelector((state: RootState) => state.hotels);
+  const {
+    isLoggedIn
+  } = useSelector((state: RootState) => state.auth);
+
+  if(!isLoggedIn){
+    navigate("/login")
+  }
 
   useEffect(() => {
     dispatch(loadHotels());

@@ -16,7 +16,10 @@ const ExploreView: React.FC<ExploreViewProps> = ({ title, text, imgSrc }) => {
         </Col>
         <Col md={6}>
           <Card.Body>
-            <Card.Title>{title}</Card.Title>
+            <Card.Title>
+              <div className="tile">{title}</div>
+              
+              </Card.Title>
             <Card.Text>{text}</Card.Text>
           </Card.Body>
         </Col>

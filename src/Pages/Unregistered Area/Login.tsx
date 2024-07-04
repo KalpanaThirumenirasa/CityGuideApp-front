@@ -1,6 +1,6 @@
 // src/Pages/Login.tsx
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import Input from "../../Components/Inputs/Input";
 import Buttons from "../../Components/Inputs/Buttons";
@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { validateToken } from "../../Features/Slices/authSlice";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
-import { log } from "console";
 
 const Login: React.FC = () => {
   const { t } = useTranslation();

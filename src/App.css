@@ -76,12 +76,34 @@
 
 
 
-.headings {
-  font-family: "Orator_Std_Medium", sans-serif;
+.heading {
+  font-family: 'Orator_Std_Medium';
+  font-size: 28pt;
 }
 
-.headings h2 {
-  font-size: 28pt;
+.tile {
+  font-family: 'Saira', sans-serif !important;
+  font-size: 28px;
+}
+
+body {
+  font-family: 'Saira', sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #333333; 
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --thd-blau: #1a4273;
+  --donau-blau: #009fe3;
+  --dark-grey: #313131;
+  --light-grey: #434343;
+  --schema-bg: rgba(255, 255, 255, 0.9);
+  --schema-color: var(--dark-grey);
+  --lh: 1.4rem;
 }
 
 

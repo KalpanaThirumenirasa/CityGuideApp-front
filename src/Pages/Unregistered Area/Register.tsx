@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import Input from "../../Components/Inputs/Input";
 import Buttons from "../../Components/Inputs/Buttons";
 import { register, RegisterData } from "../../Features/Services/authService";
+import { toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState<RegisterData>({
@@ -12,9 +14,8 @@ const Register: React.FC = () => {
     password: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<boolean>(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -27,15 +28,14 @@ const Register: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    setError(null);
-    setSuccess(false);
 
     try {
       await register(formData);
-      setSuccess(true);
+      toast.success("Successfully Logged In")
+      navigate("/explore");
       setFormData({ firstname: "", username: "", password: "" });
     } catch (err) {
-      setError((err as Error).message);
+      toast.error("Registration Failed")
     } finally {
       setLoading(false);
     }
@@ -50,11 +50,6 @@ const Register: React.FC = () => {
           </div>
 
           <Form onSubmit={handleSubmit}>
-            {error && <Alert variant="danger">{error}</Alert>}
-            {success && (
-              <Alert variant="success">{t("Registration successful!")}</Alert>
-            )}
-
             <Input
               label="First Name"
               type="text"

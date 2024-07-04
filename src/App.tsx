@@ -1,4 +1,4 @@
-// import "./App.css";
+import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Unregistered Area/Home";
 import Login from "./Pages/Unregistered Area/Login";
@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Restaurents from "./Pages/Registered Area/Restaurents";
 import Loader from "./Pages/Admin/layouts/loader/Loader";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import AdminDashboard from "./Pages/Admin/AdminDashboard";
 import AddHotels from "./Pages/Admin/AddHotels";
 import EditHotels from "./Pages/Admin/EditHotels";
@@ -25,9 +25,13 @@ import { AppDispatch, RootState } from "./Features/store";
 import Hotel from "./Pages/Registered Area/Hotel";
 import { ToastContainer } from "react-toastify";
 import { validateToken } from "./Features/Slices/authSlice";
+import ChatBox from "./Components/ChatBox";
+import { getChatUser } from "./Features/Slices/chatSlice";
+
 function App() {
   const { i18n } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+  const { isLoggedIn, userId } = useSelector((state: RootState) => state.auth);
 
   useEffect(() => {
     const language = localStorage.getItem("lan") || "en";
@@ -39,7 +43,11 @@ function App() {
     validate();
   }, [i18n, dispatch]);
 
-  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
+  useEffect(() => {
+    if (userId) {
+      dispatch(getChatUser(userId));
+    }
+  }, [dispatch, userId]);
 
   return (
     <BrowserRouter>
@@ -60,8 +68,6 @@ function App() {
           path="/editTouristplace/:id"
           element={<EditTouristplace />}
         ></Route>
-        {/* <Route path="/event" element={<Event />}></Route> */}
-
         <Route
           path="/adminDashBoard/*"
           element={
@@ -70,8 +76,9 @@ function App() {
             </Suspense>
           }
         ></Route>
-        {isLoggedIn && <Route path="explore/hotel" element={<Hotel />} />}
+        <Route path="explore/hotel" element={<Hotel />} />
       </Routes>
+      {isLoggedIn && <ChatBox />}
       <Footer />
       <ToastContainer />
     </BrowserRouter>

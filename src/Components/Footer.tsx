@@ -4,9 +4,15 @@ import { useTranslation } from "react-i18next";
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
-  
+
   return (
-    <div className="text-center py-1" style={{ backgroundColor: "#333333", color: "white" }}>
+    <div
+      className="text-center p-1"
+      style={{
+        backgroundColor: "var(--dark-grey)",
+        color: "var( --schema-bg)",
+      }}
+    >
       <Container>
         <p className="footer-text">
           &copy; 2024 | <a>{t("Deggendorf Institute of Technology")}</a> |

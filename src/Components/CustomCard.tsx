@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import Buttons from "./Inputs/Buttons"; 
+import Buttons from "./Inputs/Buttons";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -24,13 +24,29 @@ const CustomCard: React.FC<CustomCardProps> = ({
   const { t } = useTranslation();
   return (
     <Card className="h-100 shadow" style={{ width: "100%" }}>
-      <Card.Img variant="top" src={imageUrl} style={{ height: "200px", objectFit: "cover" }} />
-      <Card.Body>
-        <Card.Title>{t(title)}</Card.Title>
-        <Card.Text>{t(desc)}</Card.Text>
-        <Link to={linkUrl}>
-          <Buttons variant="primary" text={t(buttonText)} className="w-100" onClick={onClick} />
-        </Link>
+      <Card.Img
+        variant="top"
+        src={imageUrl}
+        style={{ height: "200px", objectFit: "cover" }}
+      />
+      <Card.Body className="d-flex flex-column justify-content-between">
+        <div>
+          <Card.Title>
+            <div className="tile">{t(title)}</div>
+          </Card.Title>
+          <Card.Text>{t(desc)}</Card.Text>
+        </div>
+        <div className="text-center">
+          <Link to={linkUrl}>
+            <Buttons
+              variant="info"
+              className="w-50"
+              text={t(buttonText)}
+              onClick={onClick}
+              size="sm"
+            />
+          </Link>
+        </div>
       </Card.Body>
     </Card>
   );

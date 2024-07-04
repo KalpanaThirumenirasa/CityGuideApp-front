@@ -2,12 +2,8 @@ import React from "react";
 import CustomCard from "../../Components/CustomCard";
 import { Container, Row, Col } from "react-bootstrap";
 import { cardData } from "../../Data/explore";
-import ChatBox from "../../Components/ChatBox";
-import { useSelector } from "react-redux";
-import { RootState } from "../../Features/store";
 
 const Explore: React.FC = () => {
-  const { isLoggedIn } = useSelector((state: RootState) => state.auth);
   return (
     <div>
       <Container>
@@ -25,7 +21,6 @@ const Explore: React.FC = () => {
           ))}
         </Row>
       </Container>
-      {isLoggedIn && <ChatBox />}
     </div>
   );
 };
