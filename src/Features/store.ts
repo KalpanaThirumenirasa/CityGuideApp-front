@@ -5,6 +5,7 @@ import  userReducer from './Slices/userSlice';
 import  authReducer from './Slices/authSlice';
 import  eventReducer from './Slices/eventSlice';
 import touristPlaceReducer from './Slices/touristplaceSlice';
+import chatReducer from './Slices/chatSlice';
 
 
 const store = configureStore({
@@ -14,7 +15,8 @@ const store = configureStore({
     hotels: hotelReducer,
     users: userReducer,
     events: eventReducer,
-    touristPlaces: touristPlaceReducer
+    touristPlaces: touristPlaceReducer,
+    chat:chatReducer
   }
 });
 

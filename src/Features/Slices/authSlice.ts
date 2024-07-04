@@ -36,6 +36,7 @@ export const validateToken = async (dispatch: Dispatch<any>) => {
     console.log(decodedToken);
     dispatch(setFirstname(decodedToken.firstname));
     dispatch(setRole(decodedToken.role));
+    dispatch(setUserId(decodedToken.userId));
     dispatch(setIsLoggedIn(true));
   } else {
     console.log("Token is invalid or expired");
@@ -44,15 +45,17 @@ export const validateToken = async (dispatch: Dispatch<any>) => {
 };
 
 interface AuthState {
-  isLoggedIn: boolean;
+  isLoggedIn: boolean |false;
   firstname: string | null;
   role: string | null;
+  userId: string | null;
 }
 
 const initialState: AuthState = {
   isLoggedIn: false,
   firstname: null,
   role: null,
+  userId:null
 };
 
 const authSlice = createSlice({
@@ -68,6 +71,9 @@ const authSlice = createSlice({
     setIsLoggedIn: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
     },
+    setUserId: (state, action: PayloadAction<string | null>) => {
+      state.userId = action.payload;
+    },
     resetAuth: (state) => {
       state.isLoggedIn = false;
       state.firstname = null;
@@ -76,6 +82,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setFirstname, setRole, setIsLoggedIn, resetAuth } = authSlice.actions;
+export const { setFirstname, setRole, setIsLoggedIn, resetAuth ,setUserId} = authSlice.actions;
 export default authSlice.reducer;
 

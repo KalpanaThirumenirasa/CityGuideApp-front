@@ -1,7 +1,6 @@
 // src/slices/restaurantSlice.ts
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchEvents, EventData } from '../Services/eventService';
-
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { fetchEvents, EventData } from "../Services/eventService";
 
 interface EventState {
   data: EventData[];
@@ -15,16 +14,13 @@ const initialState: EventState = {
   error: null,
 };
 
-export const loadEvents = createAsyncThunk(
-  'events/fetchEvents',
-  async () => {
-    const response = await fetchEvents();
-    return response;
-  }
-);
+export const loadEvents = createAsyncThunk("events/fetchEvents", async () => {
+  const response = await fetchEvents();
+  return response;
+});
 
 const eventSlice = createSlice({
-  name: 'event',
+  name: "event",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -33,13 +29,16 @@ const eventSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(loadEvents.fulfilled, (state, action: PayloadAction<EventData[]>) => {
-        state.loading = false;
-        state.data = action.payload;
-      })
+      .addCase(
+        loadEvents.fulfilled,
+        (state, action: PayloadAction<EventData[]>) => {
+          state.loading = false;
+          state.data = action.payload;
+        }
+      )
       .addCase(loadEvents.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'Failed to fetch Events';
+        state.error = action.error.message || "Failed to fetch Events";
       });
   },
 });

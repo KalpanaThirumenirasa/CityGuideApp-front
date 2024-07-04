@@ -1,4 +1,3 @@
-import { jwtDecode } from "jwt-decode";
 
 export interface RegisterData {
   firstname: string;

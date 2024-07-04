@@ -20,17 +20,24 @@ import AddEvent from "./Pages/Admin/AddEvent";
 import EditEvent from "./Pages/Admin/EditEvent";
 import AddTouristplace from "./Pages/Admin/AddTouristplace";
 import EditTouristplace from "./Pages/Admin/EditTouristplace";
-import { useSelector } from "react-redux";
-import { RootState } from "./Features/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "./Features/store";
 import Hotel from "./Pages/Registered Area/Hotel";
 import { ToastContainer } from "react-toastify";
+import { validateToken } from "./Features/Slices/authSlice";
 function App() {
   const { i18n } = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const language = localStorage.getItem("lan") || "en";
     i18n.changeLanguage(language);
-  }, [i18n]);
+
+    const validate = async () => {
+      await dispatch(validateToken);
+    };
+    validate();
+  }, [i18n, dispatch]);
 
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
@@ -49,7 +56,10 @@ function App() {
         <Route path="/addEvent" element={<AddEvent />}></Route>
         <Route path="/editEvent/:id" element={<EditEvent />}></Route>
         <Route path="/addTouristplace" element={<AddTouristplace />}></Route>
-        <Route path="/editTouristplace/:id" element={<EditTouristplace />}></Route>
+        <Route
+          path="/editTouristplace/:id"
+          element={<EditTouristplace />}
+        ></Route>
         {/* <Route path="/event" element={<Event />}></Route> */}
 
         <Route

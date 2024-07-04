@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { useTranslation } from "react-i18next";
 import Buttons from "../../Components/Inputs/Buttons";
 import { cityData } from "../../Data/city";
 import Toggle from "../../Components/Toggle";
 import ChatBox from "../../Components/ChatBox";
-import { useSelector } from "react-redux";
-import { RootState } from "../../Features/store";
-import { UserRole } from "../../Features/Slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../Features/store";
+import { UserRole, validateToken } from "../../Features/Slices/authSlice";
+import { translateText } from "../../Features/Services/translateService";
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+ 
 
   const handleToggleClick = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
   const { isLoggedIn, role } = useSelector((state: RootState) => state.auth);
+
+ 
 
   const backgroundImage =
     "https://image.geo.de/30151392/t/q1/v3/w1440/r0/-/passau-s-402665383-jpg--86369-.jpg";

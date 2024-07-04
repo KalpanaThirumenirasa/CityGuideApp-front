@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { validateToken } from "../../Features/Slices/authSlice";
 import { useDispatch } from "react-redux";
 import { toast } from 'react-toastify';
-import { translateText } from "../../Features/Services/translateService";
 import { log } from "console";
 
 const Login: React.FC = () => {
@@ -36,12 +35,10 @@ const Login: React.FC = () => {
     setLoading(true);
    
     try {
-      const result = await translateText();
-      console.log(result);
-      // await login(formData);
-      // await validateToken(dispatch);
-      // toast.success("Successfully Logged In")
-      // navigate("/explore");
+      await login(formData);
+      await validateToken(dispatch);
+      toast.success("Successfully Logged In")
+      navigate("/explore");
     } catch (err) {
       toast.error("Login Failed")
     } finally {
