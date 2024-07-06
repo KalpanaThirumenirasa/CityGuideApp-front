@@ -1,11 +1,16 @@
 // src/slices/restaurantSlice.ts
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
+  addAdminChat,
+  AddAdminchatData,
   addUserChat,
   AddUserchatData,
   chatData,
   getUserChat,
 } from "../Services/chatService";
+import { getLogger } from "../../lib/logger";
+
+const logger= getLogger();
 
 interface ChatState {
   data: chatData[];
@@ -35,6 +40,14 @@ export const userChatAdd = createAsyncThunk(
   }
 );
 
+export const adminChatAdd = createAsyncThunk(
+  "chats/addAdminChat",
+  async (data: AddAdminchatData) => {
+    const response = await addAdminChat(data);
+    return response;
+  }
+);
+
 const chatlice = createSlice({
   name: "chat",
   initialState,
@@ -54,7 +67,7 @@ const chatlice = createSlice({
       )
       .addCase(getChatUser.rejected, (state, action) => {
         state.loading = false;
-        console.log(action.error);
+        logger.info(action.error);
         state.error = action.error.message || "Failed to fetch chatdata";
       })
       .addCase(userChatAdd.pending, (state) => {
@@ -65,13 +78,29 @@ const chatlice = createSlice({
         userChatAdd.fulfilled,
         (state, action: PayloadAction<chatData>) => {
           state.loading = false;
-          state.data.push(action.payload); 
+          state.data.push(action.payload);
         }
       )
       .addCase(userChatAdd.rejected, (state, action) => {
         state.loading = false;
-        console.log(action.error);
+        logger.info(action.error);
         state.error = action.error.message || "Failed to add user chat";
+      })
+      .addCase(adminChatAdd.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        adminChatAdd.fulfilled,
+        (state, action: PayloadAction<chatData>) => {
+          state.loading = false;
+          state.data.push(action.payload);
+        }
+      )
+      .addCase(adminChatAdd.rejected, (state, action) => {
+        state.loading = false;
+        logger.info(action.error);
+        state.error = action.error.message || "Failed to add admin chat";
       });
   },
 });

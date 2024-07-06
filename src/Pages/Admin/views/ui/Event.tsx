@@ -68,7 +68,8 @@ const Event: React.FC = () => {
                             height="45"
                           />
                           <div className="ms-3">
-                            <h6 className="mb-0">{event.eventName}</h6>
+                          <div className="tile"> {event.eventName}</div>
+                          
                             <span className="text-muted">{event.desc}</span>
                           </div>
                         </div>

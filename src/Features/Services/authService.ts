@@ -1,7 +1,7 @@
 
 export interface RegisterData {
   firstname: string;
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -21,7 +21,7 @@ export const register = async (data: RegisterData): Promise<any> => {
 };
 
 export interface LoginData {
-  username: string;
+  email: string;
   password: string;
 }
 

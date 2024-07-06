@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction, Dispatch } from "@reduxjs/toolkit";
 import { jwtDecode } from "jwt-decode";
+import { getLogger } from "../../lib/logger";
+
+const logger= getLogger();
 
 interface DecodedToken {
   userId: string;
@@ -30,16 +33,16 @@ const getToken = (): string | null => {
 export const validateToken = async (dispatch: Dispatch<any>) => {
   const token = getToken();
   if (token && (await isTokenValid(token))) {
-    console.log("Token is valid");
+    logger.info("Token is valid");
 
     const decodedToken = jwtDecode<DecodedToken>(token);
-    console.log(decodedToken);
+    logger.info(decodedToken);
     dispatch(setFirstname(decodedToken.firstname));
     dispatch(setRole(decodedToken.role));
     dispatch(setUserId(decodedToken.userId));
     dispatch(setIsLoggedIn(true));
   } else {
-    console.log("Token is invalid or expired");
+    logger.info("Token is invalid or expired");
     dispatch(resetAuth()); 
   }
 };

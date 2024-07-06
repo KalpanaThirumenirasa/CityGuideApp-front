@@ -1,4 +1,7 @@
 import axios from 'axios';
+import { getLogger } from "../../lib/logger";
+
+const logger= getLogger();
 
 const API_KEY = 'pdct.1.1.20240703T053200Z.0f4010bbbf64c82a.4a8eda05126026ae95da99fe57f5541105de6b1d';  // Replace with your actual API key
 const URL = 'https://translate.yandex.net/api/v1.5/tr.json/translate';
@@ -18,7 +21,7 @@ export const translateText = async () => {
     }
 
     const translatedText = response.data.text[0];
-    console.log(translatedText);
+    logger.info(translatedText);
     return translatedText;
   } catch (error) {
     if (axios.isAxiosError(error)) {

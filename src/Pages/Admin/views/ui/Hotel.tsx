@@ -68,7 +68,10 @@ const Hotel: React.FC = () => {
                             height="45"
                           />
                           <div className="ms-3">
-                            <h6 className="mb-0">{hotel.hotelName}</h6>
+                           
+                              <div className="tile">{hotel.hotelName}</div>
+                              
+                             
                             <span className="text-muted">{hotel.desc}</span>
                           </div>
                         </div>

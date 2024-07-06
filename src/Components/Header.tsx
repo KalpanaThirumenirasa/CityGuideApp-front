@@ -5,12 +5,14 @@ import { useTranslation } from "react-i18next";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../Logo/logo.png";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../Features/store";
+import { resetAuth } from "../Features/Slices/authSlice";
 
 const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { isLoggedIn } = useSelector((state: RootState) => state.auth);
 
@@ -21,6 +23,7 @@ const Header: React.FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    dispatch(resetAuth());
     navigate("/");
   };
 

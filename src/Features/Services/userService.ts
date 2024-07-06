@@ -1,14 +1,16 @@
 export interface UserData {
   _id: string;
   firstname: string;
-  username: string;
+  email: string;
   password: string;
+  role:string;
 }
 
 export interface AddUserData {
   firstname: string;
-  username: string;
+  email: string;
   password: string;
+  role:string;
 }
 
 export const addUser = async (data: AddUserData): Promise<any> => {

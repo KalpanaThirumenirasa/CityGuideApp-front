@@ -20,6 +20,7 @@ const Event = lazy(() => import("../views/ui/Event.tsx"));
 const Touristplace = lazy(() => import("../views/ui/Touristplace.tsx"));
 const Forms = lazy(() => import("../views/ui/Forms"));
 const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
+const Chat = lazy(() => import("../views/ui/Chat.tsx"));
 
 /*****Routes******/
 
@@ -43,6 +44,7 @@ const ThemeRoutes = [
       { path: "/Touristplace", exact: true, element: <Touristplace /> },
       { path: "/forms", exact: true, element: <Forms /> },
       { path: "/breadcrumbs", exact: true, element: <Breadcrumbs /> },
+      { path: "/Chat", exact: true, element: <Chat /> },
     ],
   },
 ];

@@ -27,6 +27,11 @@ const navigation = [
     title: "Tourist Place",
     href: "/adminDashBoard/touristPlace",
     icon: "bi bi-layout-split",
+  },
+  {
+    title: "Chat",
+    href: "/adminDashBoard/Chat",
+    icon: "bi bi-layout-split",
   }
 ];
 

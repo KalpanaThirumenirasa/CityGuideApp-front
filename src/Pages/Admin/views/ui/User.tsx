@@ -30,13 +30,12 @@ const User: React.FC = () => {
   }
 
   const handleEdit = (id: string) => {
-    navigate(`/editUsers/${id}`);
+    navigate(`/editUser/${id}`);
   };
-
   return (
     <Row>
       <Col lg="12" className="d-flex justify-content-end mb-3">
-        <Buttons variant="primary" text="Create" to="/addUsers" className="mx-3" />
+        <Buttons variant="primary" text="Create" to="/addUser" className="mx-3" />
       </Col>
       <Col lg="12">
         <div>
@@ -52,6 +51,7 @@ const User: React.FC = () => {
                   <tr>
                     <th>First Name</th>
                     <th>Username</th>
+                    <th>UserRole</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -59,7 +59,8 @@ const User: React.FC = () => {
                   {users.map((user) => (
                     <tr key={user._id} className="border-top">
                       <td>{user.firstname}</td>
-                      <td>{user.username}</td>
+                      <td>{user.email}</td>
+                      <td>{user.role}</td>
                       <td>
                         <button
                           className="btn btn-primary mx-2"

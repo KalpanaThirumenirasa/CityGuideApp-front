@@ -16,7 +16,7 @@ const Login: React.FC = () => {
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState<LoginData>({
-    username: "",
+    email: "",
     password: "",
   });
   const [loading, setLoading] = useState<boolean>(false);
@@ -60,7 +60,7 @@ const Login: React.FC = () => {
               type="email"
               name="username"
               placeholder="Enter email"
-              value={formData.username}
+              value={formData.email}
               onChange={handleChange}
             />
             <Input

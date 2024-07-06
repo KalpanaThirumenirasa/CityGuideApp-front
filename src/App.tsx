@@ -29,6 +29,11 @@ import AddRestaurant from "./Pages/Admin/AddRestaurant";
 import EditRestaurant from "./Pages/Admin/EditRestaurant";
 import AddTouristplace from "./Pages/Admin/AddTouristplace";
 import EditTouristplace from "./Pages/Admin/EditTouristplace";
+import Event from "./Pages/Registered Area/Events";
+import Restaurant from "./Pages/Registered Area/Restaurant";
+import Tourist from "./Pages/Registered Area/Tourist";
+import AddUser from "./Pages/Admin/AddUser";
+import EditUser from "./Pages/Admin/EditUser";
 
 function App() {
   const { i18n } = useTranslation();
@@ -69,6 +74,8 @@ function App() {
         <Route path="/editEvent/:id" element={<EditEvent />}></Route>
         <Route path="/addTouristPlace" element={<AddTouristplace />}></Route>
         <Route path="/editTouristPlace/:id" element={<EditTouristplace />}></Route>
+        <Route path="/addUser" element={<AddUser />} />
+        <Route path="/editUser/:id" element={<EditUser />} />
         <Route
           path="/adminDashBoard/*"
           element={
@@ -78,6 +85,9 @@ function App() {
           }
         ></Route>
         <Route path="explore/hotel" element={<Hotel />} />
+        <Route path="explore/event" element={<Event />} />
+        <Route path="explore/restaurant" element={<Restaurant />} />
+        <Route path="explore/tourist" element={<Tourist />} />
       </Routes>
       {isLoggedIn && <ChatBox />}
       <Footer />

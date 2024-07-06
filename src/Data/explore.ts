@@ -11,21 +11,21 @@ export const cardData: {
   {
     title: "Restaurant",
     desc:"Discover the diverse culinary scene in Passau, featuring local and international cuisine.",
-    linkUrl:"hotel",
+    linkUrl:"restaurant",
     imageUrl:
       "https://images.pexels.com/photos/262047/pexels-photo-262047.jpeg?auto=compress&cs=tinysrgb&w=600"
   },
   {
     title: "Popular Places",
     desc:"Check out the must-visit attractions in Passau, from historic sites to beautiful parks.",
-    linkUrl:"hotel",
+    linkUrl:"tourist",
     imageUrl:
       "https://images.pexels.com/photos/2464985/pexels-photo-2464985.jpeg?auto=compress&cs=tinysrgb&w=600"
   },
   {
     title: "Events",
     desc:"Stay updated with the latest events happening in Passau, including festivals, concerts, and more.",
-    linkUrl:"hotel",
+    linkUrl:"event",
     imageUrl:
       "https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg?auto=compress&cs=tinysrgb&w=600"
   },
