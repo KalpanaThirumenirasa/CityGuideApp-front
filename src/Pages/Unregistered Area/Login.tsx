@@ -58,7 +58,7 @@ const Login: React.FC = () => {
             <Input
               label="Username"
               type="email"
-              name="username"
+              name="email"
               placeholder="Enter email"
               value={formData.email}
               onChange={handleChange}
